@@ -1,0 +1,64 @@
+
+#include </home/duciito/.termcolors/harbing> 
+
+*font: -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-1
+*boldFont:
+URxvt.internalBorder: 30
+URxvt.geometry: 73x23
+URxvt.scrollBar: false
+URxvt*buffered: false
+
+! DPI/Font
+Xft.dpi: 96
+Xft.autohint: 0
+Xft.antialias: 1
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
+! Colors  
+*background:   bg  
+*foreground:   fg  
+*color0:      blk  
+*color8:      bblk  
+*color1:      red  
+*color9:      bred  
+*color2:      grn  
+*color10:     bgrn  
+*color3:      ylw  
+*color11:     bylw  
+*color4:      blu  
+*color12:     bblu  
+*color5:      mag  
+*color13:     bmag  
+*color6:      cyn  
+*color14:     bcyn  
+*color7:      wht  
+*color15:     bwht  
+
+
+! Rofi
+rofi.modi: run
+rofi.font: xos4 Terminus 12
+rofi.separator-style: none
+rofi.scrollbar-width: 0
+rofi.location: 0
+rofi.padding: 50
+rofi.lines: 8
+rofi.cycle: true
+rofi.width: 28
+rofi.bw: 0
+
+rofi.color-enabled: true
+rofi.color-normal: cyn, bg, cyn,  fg,   bg
+rofi.color-active: cyn, bg, cyn,  fg,   bg
+rofi.color-urgent: cyn, bg, cyn,  bg,   bg
+rofi.color-window: cyn, cyn, cyn
+
+! Enables copy/paste with Ctrl-Shift-C/V
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.perl-ext-common: default,clipboard
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste

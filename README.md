@@ -1,2 +1,2 @@
 # dots
-just my dotfiles
+just my dotfiles managed with GNU stow

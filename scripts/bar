@@ -133,8 +133,7 @@ function status {
 
     clockdate() {
 	      clockd=$(date +'%d %b ')
-        cd="${clockd,,}"    # force output to all 
-caps
+        cd="${clockd,,}"    # force output to all caps
         echo $BLACK$glycal"$SE2P"$cd$CLR
 	  }
 
@@ -210,7 +209,7 @@ caps
           total=$(xprop -root _NET_NUMBER_OF_DESKTOPS | awk '{print $3}')
 
            for w in `seq 0 $((cur- 1))`; do line="$line"$SE2P"%{F$a$wht}$gnc"$SE2P""; done
-           line="$line%{F$a$red}$glycrnt"$SE2P""
+           line="$line%{F$a$mag}$glycrnt"$SE2P""
            for w in `seq $((cur + 2)) $total`; do line="$line"$SE2P"%{F$a$wht}$glycrnt"$SE2P""; done
       fi
        echo $line%{F-}

@@ -61,10 +61,10 @@ cyn=$(xrdb -query|awk '/\*.color6:/ {print $2}'|cut -d '#' -f2)
 wht=$(xrdb -query|awk '/\*.color7:/ {print $2}'|cut -d '#' -f2)
 
 ## set RAG values for color output based on state
-PANIC="%{B$a$mag}%{F$a$wht}$SEP"
+PANIC="%{B$a$mag}%{F$a$blk}$SEP"
 ALERT="%{B$a$red}%{f$a$wht}$SEP"
-WARN="%{B$a$ylw}%{F$a$blk}$SEP"
-GOOD="%{B$a$grn}%{F$a$blk}$SEP"
+WARN="%{B$a$blu}%{F$a$blk}$SEP"
+GOOD="%{B$a$cyn}%{F$a$blk}$SEP"
 HOT="%{B$a$red}%{F$a$wht}$SEP"
 WARM="%{B$a$blu}%{F$a$wht}$SEP"
 NORM="%{B$a$cyn}%{F$a$blk}$SEP"
@@ -103,7 +103,7 @@ function status {
             elif [[ $temp -le "60" ]] && [[ $mem = "50" ]]; then
                 t="$WARM"$SEP"$temp"
             else
-                t="$NORM"$SEP"$temp"
+                t="$WARN"$SEP"$temp"
             fi
         echo "$PLAIN$glytemp$CLR$t$CLR"
     }
@@ -191,7 +191,7 @@ caps
 
     wireless() {
         wifi=$(iwgetid -r)
-        echo $PLAIN$glywifi$CLR$WARN$SEP$wifi$CLR
+        echo $PLAIN$glywifi$CLR$PANIC$SEP$wifi$CLR
     }
 
     tags() {

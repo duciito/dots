@@ -1,0 +1,23 @@
+! -- Title:     skater 
+! -- Author:    duciito
+! -- Created:   2018
+! -- Modified:  2018
+
+#define bg     #31252a
+#define fg     #cbc8c9
+#define blk    #31252a
+#define bblk   #645b5f
+#define red    #b85a7e
+#define grn    #a0778a
+#define ylw    #c27892
+#define blu    #aa9ca8
+#define mag    #ca9aa8
+#define cyn    #98cbbc
+#define wht    #cbc8c9
+#define bred   #b85a7e
+#define bgrn   #a0778a
+#define bylw   #c27892
+#define bblu   #aa9ca8
+#define bmag   #ca9aa8
+#define bcyn   #98cbbc
+#define bwht   #cbc8c9

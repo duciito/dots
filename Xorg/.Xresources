@@ -1,5 +1,4 @@
-
-#include </home/duciito/.termcolors/harbing> 
+#include </home/duciito/.termcolors/skater> 
 
 *font: -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-1
 *boldFont:
@@ -17,25 +16,26 @@ Xft.hintstyle: hintslight
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
-! Colors  
-*background:   bg  
-*foreground:   fg  
-*color0:      blk  
-*color8:      bblk  
-*color1:      red  
-*color9:      bred  
-*color2:      grn  
-*color10:     bgrn  
-*color3:      ylw  
-*color11:     bylw  
-*color4:      blu  
-*color12:     bblu  
-*color5:      mag  
-*color13:     bmag  
-*color6:      cyn  
-*color14:     bcyn  
-*color7:      wht  
-*color15:     bwht  
+! Colors 
+*.background:   bg  
+*.foreground:   fg
+*.cursorColor: wht  
+*.color0:      blk  
+*.color8:      bblk  
+*.color1:      red  
+*.color9:      bred  
+*.color2:      grn  
+*.color10:     bgrn  
+*.color3:      ylw  
+*.color11:     bylw  
+*.color4:      blu  
+*.color12:     bblu  
+*.color5:      mag  
+*.color13:     bmag  
+*.color6:      cyn  
+*.color14:     bcyn  
+*.color7:      wht  
+*.color15:     bwht  
 
 
 ! Rofi
@@ -51,10 +51,10 @@ rofi.width: 28
 rofi.bw: 0
 
 rofi.color-enabled: true
-rofi.color-normal: cyn, bg, cyn,  fg,   bg
-rofi.color-active: cyn, bg, cyn,  fg,   bg
-rofi.color-urgent: cyn, bg, cyn,  bg,   bg
-rofi.color-window: cyn, cyn, cyn
+rofi.color-normal: blu, bg, blu,  mag,   bg
+rofi.color-active: blu, bg, blu,  mag,   bg
+rofi.color-urgent: blu, bg, blu,  bg,  bg
+rofi.color-window: blu, blu, blu
 
 ! Enables copy/paste with Ctrl-Shift-C/V
 URxvt.iso14755: false

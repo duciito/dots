@@ -111,6 +111,7 @@ function status {
     battery() {
         state=$(cat /sys/class/power_supply/BAT1/status)
         lvl=$(cat /sys/class/power_supply/BAT1/capacity)
+	full="full"
 
         case $state in
             "Charging")
@@ -125,8 +126,8 @@ function status {
                 else
                     current="$PLAIN$glybattclose$CLR$GOOD$SE2P$lvl"
                 fi ;;
-            "full")
-                current="$PLAIN$glybattfull$CLR$GOOD$SE2P$state" ;;
+            "Full")
+                current="$PLAIN$glybattfull$CLR$GOOD$SE2P$full" ;;
         esac
         echo "$current$CLR"
     }
@@ -306,4 +307,3 @@ while true
 	 echo "$(status)"
 	sleep .5
 done | $display
-

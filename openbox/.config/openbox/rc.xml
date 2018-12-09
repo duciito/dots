@@ -25,40 +25,16 @@
     <keepBorder>no</keepBorder>
     <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
-      <name>xos4 Terminus</name>
+      <name>Input Sans</name>
       <size>12</size>
       <weight>Normal</weight>
       <slant>Normal</slant>
     </font>
     <font place="InactiveWindow">
-      <name>xos4 Terminus</name>
+      <name>Input Sans</name>
       <size>12</size>
       <weight>Normal</weight>
       <slant>Normal</slant>
-    </font>
-    <font place="MenuHeader">
-      <name>Sans</name>
-      <size>8</size>
-      <weight>Normal</weight>
-      <slant>Normal</slant>
-    </font>
-    <font place="MenuItem">
-      <name>Sans</name>
-      <size>8</size>
-      <weight/>
-      <slant/>
-    </font>
-    <font place="ActiveOnScreenDisplay">
-      <name>Sans</name>
-      <size>8</size>
-      <weight/>
-      <slant/>
-    </font>
-    <font place="InactiveOnScreenDisplay">
-      <name>Sans</name>
-      <size>8</size>
-      <weight/>
-      <slant/>
     </font>
   </theme>
   <desktops>
@@ -220,8 +196,8 @@
       <action name="MoveResizeTo">
         <x>0</x>
         <y>0</y>
-        <height>100%</height>
-        <width>50%</width>
+        <height>102%</height>
+        <width>51%</width>
       </action>
     </keybind>
     <keybind key="W-Right">
@@ -229,8 +205,8 @@
       <action name="MoveResizeTo">
         <x>-0</x>
         <y>0</y>
-        <height>100%</height>
-        <width>50%</width>
+        <height>102%</height>
+        <width>51%</width>
       </action>
     </keybind>
     <keybind key="W-Up">
@@ -463,15 +439,4 @@
       <decor>no</decor>
     </application>
   </applications>
-  <dock>
-    <position>TopLeft</position>
-    <floatingX>0</floatingX>
-    <floatingY>0</floatingY>
-    <stacking>Above</stacking>
-    <direction>Vertical</direction>
-    <noStrut>no</noStrut>
-    <autoHide>no</autoHide>
-    <hideDelay>300</hideDelay>
-    <showDelay>300</showDelay>
-  </dock>
 </openbox_config>

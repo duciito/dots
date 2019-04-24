@@ -128,6 +128,8 @@ function status {
                 fi ;;
             "Full")
                 current="$PLAIN$glybattfull$CLR$GOOD$SE2P$full" ;;
+            "Unknown")
+                current="$PLAIN$glychrg$CLR$GOOD$SE2P$lvl"
         esac
         echo "$current$CLR"
     }

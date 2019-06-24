@@ -32,13 +32,15 @@ values."
    dotspacemacs-configuration-layers
    '(
      (python :variables python-test-runner 'pytest)
-     javascript
+     (javascript :variables javascript-backend 'lsp)
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
+     dap
+     lsp
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t)
@@ -190,7 +192,7 @@ values."
    dotspacemacs-default-layout-name "Default"
    ;; If non nil the default layout name is displayed in the mode-line.
    ;; (default nil)
-   dotspacemacs-display-default-layout nil
+   ndotspacemacs-display-default-layout nil
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
    dotspacemacs-auto-resume-layouts nil
@@ -332,8 +334,10 @@ you should place your code here."
   (global-set-key (kbd "M-n") (kbd "C-u 1 C-v"))
   (global-set-key (kbd "M-p") (kbd "C-u 1 M-v"))
   (setq treemacs-lock-width nil)
+  (add-hook 'js2-mode-hook 'lsp)
   (add-hook 'python-mode-hook
             (lambda ()
+              (anaconda-eldoc-mode)
               (setq-default indent-tabs-mode nil)
               (setq-default tap-width 4)
               (setq-default python-indent-offset 4))))

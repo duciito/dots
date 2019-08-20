@@ -36,6 +36,27 @@
       <weight>Normal</weight>
       <slant>Normal</slant>
     </font>
+    <font place="MenuHeader">
+      <name>Sans</name>
+      <size>8</size>
+      <weight/>
+      <slant/>
+    </font>
+    <font place="MenuItem">
+      <name>Sans</name>
+      <size>8</size>
+      <weight/>
+      <slant/>
+    </font>
+    <font place="ActiveOnScreenDisplay">
+      <name/>
+    </font>
+    <font place="InactiveOnScreenDisplay">
+      <name>Sans</name>
+      <size>8</size>
+      <weight/>
+      <slant/>
+    </font>
   </theme>
   <desktops>
     <number>3</number>
@@ -439,4 +460,15 @@
       <decor>no</decor>
     </application>
   </applications>
+  <dock>
+    <position>TopLeft</position>
+    <floatingX>0</floatingX>
+    <floatingY>0</floatingY>
+    <stacking>Above</stacking>
+    <direction>Vertical</direction>
+    <noStrut>no</noStrut>
+    <autoHide>no</autoHide>
+    <hideDelay>300</hideDelay>
+    <showDelay>300</showDelay>
+  </dock>
 </openbox_config>

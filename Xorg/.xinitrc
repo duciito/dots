@@ -48,6 +48,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+sleep 3
+/home/duciito/.screenlayout/layout.sh
+setxkbmap -option caps:escape
 ~/.fehbg &
 redshift &
 urxvtd -q -f -o

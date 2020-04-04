@@ -3,7 +3,7 @@
 !*font: -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-1
 URxvt.font: xft:Input Mono:size=13
 URxvt.boldFont: xft:Input Mono:size=13
-URxvt.internalBorder: 30
+!URxvt.internalBorder: 30
 URxvt.geometry: 54x16
 URxvt.scrollBar: false
 URxvt*buffered: false
@@ -40,7 +40,7 @@ Xft.lcdfilter: lcddefault
 
 
 ! Rofi
-rofi.modi: run
+rofi.modi: run,window
 rofi.font: Input Sans 12
 rofi.separator-style: none
 rofi.scrollbar-width: 0

@@ -2,12 +2,6 @@
 let mapleader=" "
 nnoremap <Space> <Nop>
 
-" Don't try to be vi compatible
-set nocompatible
-
-" Helps force plugins to load correctly when it is turned back on below
-filetype off
-
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
 " Autocompletion
@@ -17,7 +11,12 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/goyo.vim'
+Plug 'justinmk/vim-sneak'
+Plug 'markonm/traces.vim'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'michaeljsmith/vim-indent-object'
 " Status line
 Plug 'itchyny/lightline.vim'
 " Theme
@@ -25,6 +24,11 @@ Plug 'morhetz/gruvbox'
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+" Emmet
+Plug 'mattn/emmet-vim'
+" Syntax highlighting
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'pangloss/vim-javascript' 
 call plug#end()
 
 
@@ -38,34 +42,30 @@ filetype plugin indent on
 set modelines=0
 set clipboard=unnamedplus
 
+" New buffer splitting
+set splitbelow
+set splitright
+
 " Show line numbers
 set number
 set relativenumber
 
-" Show file stats
-set ruler
-
 " Blink cursor on error instead of beeping (grr)
 set visualbell
-
-" Encoding
-set encoding=utf-8
 
 " Whitespace
 set wrap
 set textwidth=80
-set formatoptions=tcqrn1
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set smartindent
+set tabstop=8
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 set noshiftround
 
 " Cursor motion
 set scrolloff=3
-set backspace=indent,eol,start
 set matchpairs+=<:> " use % to jump between pairs
-packadd! matchit
 
 " Move up/down editor lines
 nnoremap j gj
@@ -74,12 +74,6 @@ nnoremap k gk
 " Allow hidden buffers
 set hidden
 
-" Rendering
-set ttyfast
-
-" Status bar
-set laststatus=2
-
 " Last line
 set noshowmode
 set showcmd
@@ -87,22 +81,10 @@ set showcmd
 " Searching
 nnoremap / /\v
 vnoremap / /\v
-set hlsearch
-set incsearch
 set ignorecase
 set smartcase
 set showmatch
 map <leader><space> :let @/=''<cr> " clear search
-
-" Remap help key.
-inoremap <F1> <ESC>:set invfullscreen<CR>a
-nnoremap <F1> :set invfullscreen<CR>
-vnoremap <F1> :set invfullscreen<CR>
-
-" Textmate holdouts
-
-" Formatting
-map <leader>q gqip
 
 " Visualize tabs and newlines
 set listchars=tab:▸\ ,eol:¬
@@ -275,12 +257,9 @@ let g:lightline = {
       \ },
       \ }
 
-""" EasyMotion
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-nmap s <Plug>(easymotion-sn)
-
-" Turn on case-insensitive feature
-let g:EasyMotion_smartcase = 1
+""" Sneak
+let g:sneak#label = 1
+let g:sneak#use_ic_scs = 1
 
 """ FZF
 let g:fzf_tags_command = 'ctags -R --exclude="*.html" --exclude=".mypy_cache"'
@@ -298,3 +277,16 @@ nnoremap <silent> <leader>H        :Helptags!<CR>
 nnoremap <silent> <leader>C        :Commands<CR>
 nnoremap <silent> <leader>M        :Maps<CR>
 
+""" Semshi
+function OverrideSemshiColors()
+    hi semshiGlobal          ctermfg=167 guifg=#fb4934
+    hi semshiImported        ctermfg=214 guifg=#fabd2f cterm=bold gui=bold
+    hi semshiParameter       ctermfg=142  guifg=#98971a
+    hi semshiParameterUnused ctermfg=106 guifg=#665c54
+    hi semshiBuiltin         ctermfg=208 guifg=#fe8019
+    hi semshiAttribute       ctermfg=108  guifg=fg
+    hi semshiSelf            ctermfg=109 guifg=#85a598
+    hi semshiSelected        ctermfg=231 guifg=#ffffff ctermbg=161 guibg=#d7005f
+endfunction
+
+autocmd FileType python call OverrideSemshiColors()

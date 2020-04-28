@@ -171,6 +171,18 @@
         <command>rofi -show run</command>
       </action>
     </keybind>
+    <keybind key="W-b">
+      <action name="Execute">
+        <name>Firefox</name>
+        <command>firefox -P "default-release"</command>
+      </action>
+    </keybind>
+    <keybind key="W-S-b">
+      <action name="Execute">
+        <name>Firefox Work</name>
+        <command>firefox -P "work-profile"</command>
+      </action>
+    </keybind>
     <keybind key="W-c">
       <action name="MoveToCenter"/>
       <action name="MoveRelative">

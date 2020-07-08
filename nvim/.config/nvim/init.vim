@@ -17,6 +17,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'markonm/traces.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'tommcdo/vim-exchange'
 " Status line
 Plug 'itchyny/lightline.vim'
 " Theme
@@ -52,6 +53,9 @@ set relativenumber
 
 " Blink cursor on error instead of beeping (grr)
 set visualbell
+
+" Window management
+nnoremap <leader>w <C-w>
 
 " Whitespace
 set wrap
@@ -119,6 +123,10 @@ set shortmess+=c
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 set signcolumn=yes
+
+" Set python path to avoid conflicts with virtual environments.
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python'
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -264,18 +272,19 @@ let g:sneak#use_ic_scs = 1
 """ FZF
 let g:fzf_tags_command = 'ctags -R --exclude="*.html" --exclude=".mypy_cache"'
 
-nnoremap <silent> <leader>f        :Files<CR>
-nnoremap <silent> <leader>F        :GFiles<CR>
-nnoremap <silent> <leader>b        :Buffers<CR>
-nnoremap <silent> <leader>h        :History<CR>
-nnoremap <silent> <leader>c        :Commits<CR>
-nnoremap <silent> <leader>T        :Tags<CR>
-nnoremap <silent> <leader>L        :Lines<CR>
-nnoremap <silent> <leader>'        :Marks<CR>
-nnoremap <silent> <leader>/        :Rg<Space>
-nnoremap <silent> <leader>H        :Helptags!<CR>
-nnoremap <silent> <leader>C        :Commands<CR>
-nnoremap <silent> <leader>M        :Maps<CR>
+nnoremap <silent> <leader>pf        :Files<CR>
+nnoremap <silent> <leader>ff        :Files %:p:h<CR>
+nnoremap <silent> <leader>F         :GFiles<CR>
+nnoremap <silent> <leader>b         :Buffers<CR>
+nnoremap <silent> <leader>h         :History<CR>
+nnoremap <silent> <leader>c         :Commits<CR>
+nnoremap <silent> <leader>T         :Tags<CR>
+nnoremap <silent> <leader>L         :Lines<CR>
+nnoremap <silent> <leader>'         :Marks<CR>
+nnoremap <silent> <leader>/         :Rg<Space>
+nnoremap <silent> <leader>H         :Helptags!<CR>
+nnoremap <silent> <leader>C         :Commands<CR>
+nnoremap <silent> <leader>M         :Maps<CR>
 
 """ Semshi
 function OverrideSemshiColors()

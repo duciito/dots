@@ -22,6 +22,7 @@ require("lazy").setup({
 		require("plugins.kanagawa"),
 		require("plugins.flash"),
 		require("plugins.lsp"),
+		require("plugins.gitsigns"),
 		require("plugins.lualine"),
 		require("plugins.luasnip"),
 		require("plugins.mason"),
@@ -32,6 +33,7 @@ require("lazy").setup({
 		require("plugins.telescope-fzf"),
 		require("plugins.treesitter"),
 		require("plugins.unimpaired"),
+		require("plugins.block"),
 	},
 	ui = {
 		border = "rounded",

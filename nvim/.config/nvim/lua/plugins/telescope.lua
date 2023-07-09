@@ -41,7 +41,7 @@ return {
 		vim.keymap.set('n', '<leader>ff', function() builtin.find_files({ cwd = vim.fn.expand('%:p:h') }) end, { desc = '[S]earch [F]iles in current folder' })
 		vim.keymap.set('n', '<leader>h', builtin.oldfiles, { desc = '[?] Find recently opened files' })
 		vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = '[ ] Find existing buffers' })
-		vim.keymap.set('n', '<leader>c', builtin.git_bcommits, { desc = 'Git commits' })
+		vim.keymap.set('n', '<leader>gc', builtin.git_bcommits, { desc = 'Git commits' })
 		vim.keymap.set('n', '<leader>H', builtin.help_tags, { desc = '[S]earch [H]elp' })
 		vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
 		vim.keymap.set('n', '<leader>/', builtin.live_grep, { desc = '[S]earch by [G]rep' })

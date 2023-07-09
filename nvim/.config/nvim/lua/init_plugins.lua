@@ -34,6 +34,7 @@ require("lazy").setup({
 		require("plugins.treesitter"),
 		require("plugins.unimpaired"),
 		require("plugins.block"),
+		require("plugins.project"),
 	},
 	ui = {
 		border = "rounded",

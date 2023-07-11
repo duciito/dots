@@ -43,7 +43,7 @@ return {
 		-- nvim-cmp supports additional completion capabilities
 		local capabilities = require('cmp_nvim_lsp').default_capabilities()
 		-- Enable the following language servers
-		local servers = { 'pyright', 'tsserver', 'lua_ls' }
+		local servers = { 'pyright', 'tsserver', 'lua_ls', 'dockerls', 'yamlls' }
 
 		-- Ensure the servers above are installed
 		require('mason-lspconfig').setup({

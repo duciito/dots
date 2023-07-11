@@ -18,7 +18,7 @@ vim.opt.cursorline = true
 vim.opt.showmode = false
 
 -- Decrease update time
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 750
 vim.opt.updatetime = 250
 vim.opt.signcolumn = 'yes'
 

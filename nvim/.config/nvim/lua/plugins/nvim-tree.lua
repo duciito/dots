@@ -17,6 +17,7 @@ return {
 			hijack_cursor = true,
 			sort_by = "case_sensitive",
 			view = {
+				width = 26,
 				preserve_window_proportions = true,
 			},
 			renderer = {

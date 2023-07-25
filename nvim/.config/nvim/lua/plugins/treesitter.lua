@@ -7,8 +7,19 @@ return {
 	config = function ()
 		require('nvim-treesitter.configs').setup({
 			-- Add languages to be installed here that you want installed for treesitter
-			ensure_installed = { 'c', 'lua', 'python', 'typescript', 'javascript', 'json' },
-			auto_install = false;
+			ensure_installed = {
+				'c',
+				'lua',
+				'python',
+				'typescript',
+				'javascript',
+				'json',
+				'bash',
+				'dockerfile',
+				'markdown',
+				'yaml',
+			},
+			auto_install = false,
 
 			highlight = { enable = true },
 			indent = { enable = true },
@@ -32,6 +43,8 @@ return {
 						['if'] = '@function.inner',
 						['ac'] = '@class.outer',
 						['ic'] = '@class.inner',
+						['aa'] = '@parameter.outer',
+						['ia'] = '@parameter.inner',
 					},
 				},
 				move = {

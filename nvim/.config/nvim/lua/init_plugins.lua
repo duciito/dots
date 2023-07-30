@@ -33,7 +33,6 @@ require("lazy").setup({
 		require("plugins.telescope-fzf"),
 		require("plugins.treesitter"),
 		require("plugins.unimpaired"),
-		require("plugins.project"),
 		require("plugins.null-ls"),
 	},
 	ui = {

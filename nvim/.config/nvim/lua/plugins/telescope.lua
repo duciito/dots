@@ -6,39 +6,38 @@ return {
 		'nvim-lua/plenary.nvim',
 		'nvim-telescope/telescope-fzf-native.nvim',
 	},
-	config = function ()
+	config = function()
 		local telescope = require('telescope')
 		local actions = require('telescope.actions')
 		local builtin = require('telescope.builtin')
 
 		telescope.setup({
-		  defaults = {
-		    mappings = {
-		      i = {
-			['<C-u>'] = false,
-			['<C-d>'] = false,
-			['<ESC>'] = actions.close,
-			['<C-j>'] = actions.move_selection_next,
-			['<C-k>'] = actions.move_selection_previous
-		      },
-		    },
-		    file_ignore_patterns = {
-		      ".git/.*",
-		    }
-		  },
-		  pickers = {
-		    find_files = {
-		      hidden = true
-		    },
-		    buffers = {
-		      sort_mru = true,
-		      ignore_current_buffer = true,
-		    }
-		  },
+			defaults = {
+				mappings = {
+					i = {
+						['<ESC>'] = actions.close,
+						['<C-j>'] = actions.move_selection_next,
+						['<C-k>'] = actions.move_selection_previous
+					},
+				},
+				file_ignore_patterns = {
+					".git/.*",
+				}
+			},
+			pickers = {
+				find_files = {
+					hidden = true
+				},
+				buffers = {
+					sort_lastused = true,
+					ignore_current_buffer = true,
+				}
+			},
 		})
 
 		vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = '[S]earch [F]iles' })
-		vim.keymap.set('n', '<leader>ff', function() builtin.find_files({ cwd = vim.fn.expand('%:p:h') }) end, { desc = '[S]earch [F]iles in current folder' })
+		vim.keymap.set('n', '<leader>ff', function() builtin.find_files({ cwd = vim.fn.expand('%:p:h') }) end,
+			{ desc = '[S]earch [F]iles in current folder' })
 		vim.keymap.set('n', '<leader>fh', builtin.oldfiles, { desc = '[?] Find recently opened files' })
 		vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = '[ ] Find existing buffers' })
 		vim.keymap.set('n', '<leader>gc', builtin.git_bcommits, { desc = 'Git commits' })
@@ -49,8 +48,8 @@ return {
 		vim.keymap.set('n', '<leader>st', builtin.tags, { desc = 'Tags' })
 		vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Keymaps' })
 		vim.keymap.set('n', 'gr', builtin.lsp_references)
-		vim.keymap.set('n', '<leader>cs', builtin.lsp_document_symbols, {desc = '[D]ocument [S]ymbols'})
-		vim.keymap.set('n', '<leader>cd', builtin.lsp_dynamic_workspace_symbols, {desc = '[W]orkspace [S]ymbols'})
+		vim.keymap.set('n', '<leader>cs', builtin.lsp_document_symbols, { desc = '[D]ocument [S]ymbols' })
+		vim.keymap.set('n', '<leader>cd', builtin.lsp_dynamic_workspace_symbols, { desc = '[W]orkspace [S]ymbols' })
 
 		telescope.load_extension('fzf')
 	end

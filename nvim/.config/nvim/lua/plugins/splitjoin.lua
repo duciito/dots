@@ -1,8 +1,6 @@
 return {
 	'Wansmer/treesj',
-	keys = { '<space>m', 'gJ', 'gS' },
 	dependencies = { 'nvim-treesitter/nvim-treesitter' },
-	config = function()
-		require('treesj').setup()
-	end,
+	keys = { { "<space>m", "<cmd>TSJToggle<cr>", desc = "Join Toggle" } },
+	opts = { use_default_keymaps = false, max_join_length = 150 },
 }

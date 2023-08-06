@@ -4,6 +4,7 @@ return {
 		'nvim-treesitter/nvim-treesitter-textobjects'
 	},
 	event = { "BufReadPost", "BufNewFile" },
+	build = ":TSUpdate",
 	config = function ()
 		require('nvim-treesitter.configs').setup({
 			-- Add languages to be installed here that you want installed for treesitter
@@ -82,8 +83,5 @@ return {
 				},
 			},
 		})
-	end,
-	build = function()
-		vim.cmd([[TSUpdate]])
 	end,
 }

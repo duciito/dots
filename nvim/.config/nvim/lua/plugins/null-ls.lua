@@ -17,7 +17,6 @@ return {
 				null_ls.builtins.diagnostics.ruff,
 
 				-- code actions
-				null_ls.builtins.code_actions.gitsigns,
 				null_ls.builtins.code_actions.refactoring,
 
 			},

@@ -11,10 +11,11 @@ return {
 				enable = true,
 			},
 			sync_root_with_cwd = true,
-			respect_buf_cwd = true,
 			disable_netrw = true,
 			hijack_cursor = true,
-			sort_by = "case_sensitive",
+			sort = {
+				sorter = "case_sensitive"
+			},
 			view = {
 				width = 26,
 				preserve_window_proportions = true,

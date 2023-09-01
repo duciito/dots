@@ -5,5 +5,11 @@ return {
 		-- disable until lualine loads
 		vim.opt.laststatus = 0
 	end,
-	opts = {}
+	opts = {
+		options = {
+			section_separators = "",
+			component_separators = "|",
+			extensions = { "quickfix" },
+		}
+	}
 }

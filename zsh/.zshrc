@@ -3763,5 +3763,4 @@ prompt pure
 # Local variables:
 # mode: sh
 # End:
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /usr/share/fzf/completion.zsh && source /usr/share/fzf/key-bindings.zsh

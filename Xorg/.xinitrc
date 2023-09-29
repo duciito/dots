@@ -53,7 +53,6 @@ sleep 3
 setxkbmap -option caps:escape
 ~/.fehbg &
 redshift &
-urxvtd -q -f -o
-compton --config /home/duciito/.config/compton/compton.conf -b
+picom --config /home/duciito/.config/picom/picom.conf -b
 ~/bar &
 exec openbox-session

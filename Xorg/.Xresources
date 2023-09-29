@@ -1,14 +1,5 @@
 #include </home/duciito/.termcolors/skater> 
 
-!*font: -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-1
-URxvt.font: xft:Input Mono:size=13
-URxvt.boldFont: xft:Input Mono:size=13
-!URxvt.internalBorder: 30
-URxvt.geometry: 54x16
-URxvt.scrollBar: false
-URxvt*buffered: false
-
-! DPI/Font
 Xft.dpi: 96
 Xft.autohint: 0
 Xft.antialias: 1
@@ -38,28 +29,8 @@ Xft.lcdfilter: lcddefault
 *.color7:      wht  
 *.color15:     bwht  
 
-
-! Rofi
-rofi.modi: run,window
-rofi.font: Input Sans 12
-rofi.separator-style: none
-rofi.scrollbar-width: 0
-rofi.location: 0
-rofi.padding: 50
-rofi.lines: 8
-rofi.cycle: true
-rofi.width: 28
-rofi.bw: 0
-
 rofi.color-enabled: true
 rofi.color-normal: blu, bg, blu,  mag,   bg
 rofi.color-active: blu, bg, blu,  mag,   bg
 rofi.color-urgent: blu, bg, blu,  bg,  bg
 rofi.color-window: blu, blu, blu
-
-! Enables copy/paste with Ctrl-Shift-C/V
-URxvt.iso14755: false
-URxvt.iso14755_52: false
-URxvt.perl-ext-common: default,clipboard
-URxvt.keysym.Shift-Control-C: perl:clipboard:copy
-URxvt.keysym.Shift-Control-V: perl:clipboard:paste

@@ -18,8 +18,8 @@ window:
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
   #dimensions:
-  columns: 54
-  lines: 16
+  columns: 0
+  lines: 0
 
   # Window position (changes require restart)
   #
@@ -35,7 +35,7 @@ window:
   # by DPI and the specified value is always added at both opposing sides.
   padding:
     x: 5
-    y: 5
+    y: 1
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -109,7 +109,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Input Mono
+    family: JuliaMonoNerdFontMono
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -120,7 +120,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Input Mono
+    family: JuliaMonoNerdFontMono
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -131,7 +131,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Input Mono
+    family: JuliaMonoNerdFontMono
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -142,24 +142,24 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Input Mono
+    family: JuliaMonoNerdFontMono
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
 
   # Point size
-  size: 13.0
+  size: 11.5
 
-  # Offset is the extra space around each character. `offset.y` can be thought of
+  # Offsetis the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
-  offset:
-    x: 0
-    y: 1
+  # offset:
+  #   x: 0
+  #   y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upwards.
-  #glyph_offset:
+  # glyph_offset:
   #  x: 0
   #  y: 0
 
@@ -182,36 +182,36 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: true
 
-# Colors (skater)
+# Kanagawa Alacritty Colors
 colors:
   primary:
-    background: '0x31252a'
-    foreground: '0xcbc8c9'
-  cursor:
-    text:       '0x31252a'
-    cursor:     '0xcbc8c9'
+    background: '0x1f1f28'
+    foreground: '0xdcd7ba'
+
   normal:
-    black:      '0x31252a'
-    red:        '0xb85a7e'
-    green:      '0xa0778a'
-    yellow:     '0xc27892'
-    blue:       '0xaa9ca8'
-    magenta:    '0xca9aa8'
-    cyan:       '0x98cbbc'
-    white:      '0xcbc8c9'
+    black:   '0x090618'
+    red:     '0xc34043'
+    green:   '0x76946a'
+    yellow:  '0xc0a36e'
+    blue:    '0x7e9cd8'
+    magenta: '0x957fb8'
+    cyan:    '0x6a9589'
+    white:   '0xc8c093'
+
   bright:
-    black:      '0x645b5f'
-    red:        '0xb85a7e'
-    green:      '0xa0778a'
-    yellow:     '0xc27892'
-    blue:       '0xaa9ca8'
-    magenta:    '0xca9aa8'
-    cyan:       '0x98cbbc'
-    white:      '0xcbc8c9'
+    black:   '0x727169'
+    red:     '0xe82424'
+    green:   '0x98bb6c'
+    yellow:  '0xe6c384'
+    blue:    '0x7fb4ca'
+    magenta: '0x938aa9'
+    cyan:    '0x7aa89f'
+    white:   '0xdcd7ba'
 
-# Background opacity
-#
-# Window opacity as a floating point number from `0.0` to `1.0`.
-# The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
+  selection:
+    background: '0x2d4f67'
+    foreground: '0xc8c093'
 
+  indexed_colors:
+    - { index: 16, color: '0xffa066' }
+    - { index: 17, color: '0xff5d62' }

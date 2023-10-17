@@ -51,8 +51,3 @@ fi
 sleep 3
 /home/duciito/.screenlayout/layout.sh
 setxkbmap -option caps:escape
-~/.fehbg &
-redshift &
-picom --config /home/duciito/.config/picom/picom.conf -b
-~/bar &
-exec openbox-session

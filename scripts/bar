@@ -269,9 +269,7 @@ function status {
 ## NOTE: I use lemonbar fork with borders (https://github.com/dark-yux/bar)
 ## adjust accordingly!
 
-fonts="-f 
--xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-1 -f 
--wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
+fonts="-f -wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
 width="1920"
 bs=8
 bc=$a$bblk

@@ -13,11 +13,15 @@ env:
   TERM: xterm-256color
 
 window:
-  opacity: 1.0
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
+  #dimensions:
+  columns: 0
+  lines: 0
+
+  # Window position (changes require restart)
   #
   # Specified in number of pixels.
   # If the position is not set, the window manager will handle the placement.
@@ -30,8 +34,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 3
-    y: 3
+    x: 5
+    y: 1
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -45,6 +49,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
+  decorations: full
 
   # Startup Mode (changes require restart)
   #
@@ -145,16 +150,16 @@ font:
   # Point size
   size: 11.5
 
-  # Offset is the extra space around each character. `offset.y` can be thought of
+  # Offsetis the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
-  offset:
-    x: 0
-    y: 1
+  # offset:
+  #   x: 0
+  #   y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upwards.
-  #glyph_offset:
+  # glyph_offset:
   #  x: 0
   #  y: 0
 
@@ -177,30 +182,36 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: true
 
-# Colors (skater)
+# Kanagawa Alacritty Colors
 colors:
   primary:
-    background: '0x31252a'
-    foreground: '0xcbc8c9'
-  cursor:
-    text:       '0x31252a'
-    cursor:     '0xcbc8c9'
-  normal:
-    black:      '0x31252a'
-    red:        '0xb85a7e'
-    green:      '0xa0778a'
-    yellow:     '0xc27892'
-    blue:       '0xaa9ca8'
-    magenta:    '0xca9aa8'
-    cyan:       '0x98cbbc'
-    white:      '0xcbc8c9'
-  bright:
-    black:      '0x645b5f'
-    red:        '0xb85a7e'
-    green:      '0xa0778a'
-    yellow:     '0xc27892'
-    blue:       '0xaa9ca8'
-    magenta:    '0xca9aa8'
-    cyan:       '0x98cbbc'
-    white:      '0xcbc8c9'
+    background: '0x1f1f28'
+    foreground: '0xdcd7ba'
 
+  normal:
+    black:   '0x090618'
+    red:     '0xc34043'
+    green:   '0x76946a'
+    yellow:  '0xc0a36e'
+    blue:    '0x7e9cd8'
+    magenta: '0x957fb8'
+    cyan:    '0x6a9589'
+    white:   '0xc8c093'
+
+  bright:
+    black:   '0x727169'
+    red:     '0xe82424'
+    green:   '0x98bb6c'
+    yellow:  '0xe6c384'
+    blue:    '0x7fb4ca'
+    magenta: '0x938aa9'
+    cyan:    '0x7aa89f'
+    white:   '0xdcd7ba'
+
+  selection:
+    background: '0x2d4f67'
+    foreground: '0xc8c093'
+
+  indexed_colors:
+    - { index: 16, color: '0xffa066' }
+    - { index: 17, color: '0xff5d62' }

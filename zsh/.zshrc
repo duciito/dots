@@ -3938,8 +3938,8 @@ unfunction grml_status_feature
 # Custom settings
 alias cat='pygmentize -g'
 fpath=( "$HOME/.zfunctions" $fpath )
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ~/info.sh -b
 
 ## Pure prompt
@@ -3954,30 +3954,9 @@ prompt pure
 
 ### example: split functions-search 8,16,24,32
 #@# split functions-search 8
+autoload -U +X bashcompinit && bashcompinit
 
 ## END OF FILE #################################################################
 # vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4
 # Local variables:
 # mode: sh
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/daniel-ivanov/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/daniel-ivanov/anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/daniel-ivanov/anaconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/home/daniel-ivanov/anaconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# <<< conda initialize <<<
-
-export PATH="/home/daniel-ivanov/.local/bin:$PATH"
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /snap/terraform/500/terraform terraform
-export PATH="/home/linuxbrew/.linuxbrew/opt/node@14/bin:$PATH"
-export PATH=$PATH:~/go/bin

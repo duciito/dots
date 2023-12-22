@@ -3,6 +3,8 @@ return {
 	dependencies = {
 		"rafamadriz/friendly-snippets"
 	},
+	version = "v2.*",
+	build = "make install_jsregexp",
 	event = "InsertEnter",
 	config = function()
 		local luasnip = require("luasnip")

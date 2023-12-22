@@ -31,6 +31,10 @@ return {
 				map('n', '<leader>gB', gs.toggle_current_line_blame)
 				map('n', '<leader>gd', gs.diffthis)
 				map('n', '<leader>gD', function() gs.diffthis('~') end)
+				map('n', '<leader>gr', gs.reset_hunk)
+				map('n', '<leader>gs', gs.stage_hunk)
+				map('n', '<leader>gS', gs.undo_stage_hunk)
+				map('n', '<leader>gp', gs.preview_hunk)
 			end,
 		})
 	end,

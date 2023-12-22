@@ -17,6 +17,7 @@ return {
 				sorter = "case_sensitive"
 			},
 			view = {
+				side = "right",
 				width = 26,
 				preserve_window_proportions = true,
 			},

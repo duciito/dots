@@ -37,7 +37,7 @@ return {
 			nmap('<leader>cl', function()
 				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 			end, '[W]orkspace [L]ist Folders')
-			nmap('<leader>cf', function() vim.lsp.buf.format { async = true } end, 'Format buffer')
+			-- nmap('<leader>cf', function() vim.lsp.buf.format { async = true } end, 'Format buffer')
 		end
 
 		-- nvim-cmp supports additional completion capabilities

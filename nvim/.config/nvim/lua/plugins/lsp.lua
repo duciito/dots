@@ -5,8 +5,22 @@ return {
 	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function ()
+		local signs = { Error = "❌", Warn = "⚠️", Hint = "💡", Info = "" }
+		for type, icon in pairs(signs) do
+			local hl = "DiagnosticSign" .. type
+			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+		end
+		vim.diagnostic.config({
+			virtual_text = false,
+			signs = true,
+			float = {
+				border = "rounded",
+				source = true,
+			},
+			severity_sort = true,
+		})
+
 		-- Diagnostic keymaps
-		vim.diagnostic.config({virtual_text = false})
 		vim.keymap.set('n', '[g', vim.diagnostic.goto_prev)
 		vim.keymap.set('n', ']g', vim.diagnostic.goto_next)
 		vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
@@ -50,12 +64,42 @@ return {
 			ensure_installed = servers,
 		})
 
+		table.remove(servers, 0)
+		local lspconfig = require('lspconfig')
 		for _, lsp in ipairs(servers) do
-			require('lspconfig')[lsp].setup({
+			lspconfig[lsp].setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
 		end
 
+		-- Python LSP setup --
+		local util = require("lspconfig/util")
+		local path = util.path
+		local function get_python_path(workspace)
+			-- Use activated virtualenv.
+			if vim.env.VIRTUAL_ENV then
+				return path.join(vim.env.VIRTUAL_ENV, "bin", "python")
+			end
+
+			-- Find and use virtualenv in workspace directory.
+			for _, pattern in ipairs({ "*", ".*" }) do
+				local match = vim.fn.glob(path.join(workspace, pattern, "pyvenv.cfg"))
+				if match ~= "" then
+					return path.join(path.dirname(match), "bin", "python")
+				end
+			end
+
+			-- Fallback to system Python.
+			return exepath("python3") or exepath("python") or "python"
+		end
+
+		lspconfig.pyright.setup({
+			before_init = function(_, config)
+				config.settings.python.pythonPath = get_python_path(config.root_dir)
+			end,
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
 	end,
 }

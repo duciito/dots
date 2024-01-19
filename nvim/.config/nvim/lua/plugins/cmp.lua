@@ -1,3 +1,20 @@
+---@param entry cmp.Entry
+---@return string|nil
+local function get_python_import(entry)
+	local cmp_item = entry:get_completion_item()       --- @type lsp.CompletionItem
+	if cmp_item.detail == "Auto-import" then
+		return (cmp_item.labelDetails or {}).description or '' -- pyright-specific (undocumented)
+	end
+	return nil                                         -- no information, possibly not auto-import symbol
+end
+
+---@type fun(lhs: cmp.Entry, rhs: cmp.Entry): boolean|nil
+local function prioritize_builtin(lhs, rhs)
+	local l = get_python_import(lhs)
+	local r = get_python_import(rhs)
+	if l and r then return #l < #r end -- actually, sort by the length of the defining module
+end
+
 return {
 	'hrsh7th/nvim-cmp',
 	dependencies = {
@@ -53,17 +70,21 @@ return {
 				{ name = "buffer" },
 				{ name = "luasnip" },
 			},
-			-- sorting = {
-			-- 	comparators = {
-			-- 		cmp.config.compare.offset,
-			-- 		cmp.config.compare.exact,
-			-- 		cmp.config.compare.score,
-			-- 		cmp.config.compare.kind,
-			-- 		cmp.config.compare.sort_text,
-			-- 		cmp.config.compare.length,
-			-- 		cmp.config.compare.order,
-			-- 	},
-			-- },
+			sorting = {
+				comparators = {
+					cmp.config.compare.offset,
+					cmp.config.compare.exact,
+					-- compare.scopes,
+					cmp.config.compare.score,
+					cmp.config.compare.recently_used,
+					cmp.config.compare.locality,
+					cmp.config.compare.kind,
+					-- compare.sort_text,
+					prioritize_builtin,
+					cmp.config.compare.length,
+					cmp.config.compare.order,
+				},
+			},
 		})
 	end
 }

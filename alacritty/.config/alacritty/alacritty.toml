@@ -1,0 +1,55 @@
+[colors.bright]
+black = "0x5b5e5a"
+blue = "0x57a5e5"
+cyan = "0x70c2be"
+green = "0x8fb573"
+magenta = "0xaaaaff"
+red = "0xe75a7c"
+white = "0xfff8f0"
+yellow = "0xdbb671"
+
+[colors.normal]
+black = "0x1c1e1b"
+blue = "0x57a5e5"
+cyan = "0x70c2be"
+green = "0x8fb573"
+magenta = "0xaaaaff"
+red = "0xe75a7c"
+white = "0xf1e9d2"
+yellow = "0xdbb671"
+
+[colors.primary]
+background = "0x252623"
+foreground = "0xf1e9d2"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 11.5
+
+[font.bold]
+family = "JuliaMonoNerdFontMono"
+style = "Bold"
+
+[font.bold_italic]
+family = "JuliaMonoNerdFontMono"
+style = "Bold Italic"
+
+[font.italic]
+family = "JuliaMonoNerdFontMono"
+style = "Italic"
+
+[font.normal]
+family = "JuliaMonoNerdFontMono"
+style = "Regular"
+
+[scrolling]
+history = 5000
+
+[window]
+title = "Terminal"
+
+[window.padding]
+x = 20
+y = 20

@@ -12,17 +12,19 @@ return {
 			},
 			sync_root_with_cwd = true,
 			disable_netrw = true,
-			hijack_cursor = true,
 			sort = {
 				sorter = "case_sensitive"
 			},
 			view = {
 				side = "right",
-				width = 26,
+				width = 32,
 				preserve_window_proportions = true,
 			},
 			renderer = {
 				root_folder_label = ":~:s?$",
+				indent_markers = {
+					enable = true,
+				},
 			},
 		})
 

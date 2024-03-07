@@ -33,7 +33,6 @@ require("lazy").setup({
 		require("plugins.treesitter"),
 		require("plugins.unimpaired"),
 		require("plugins.conform"),
-		require("plugins.noice"),
 		require("plugins.leetcode"),
 	},
 	ui = {

@@ -18,6 +18,7 @@ return {
 		-- Define your formatters
 		formatters_by_ft = {
 			python = { "ruff_fix", "ruff_format" },
+			go = { "gofmt" },
 			["*"] = { "trim_whitespace", "trim_newlines" },
 		},
 		-- Set up format-on-save

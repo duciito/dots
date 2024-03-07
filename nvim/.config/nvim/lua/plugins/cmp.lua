@@ -1,33 +1,27 @@
----@param entry cmp.Entry
----@return string|nil
-local function get_python_import(entry)
-	local cmp_item = entry:get_completion_item()       --- @type lsp.CompletionItem
-	if cmp_item.detail == "Auto-import" then
-		return (cmp_item.labelDetails or {}).description or '' -- pyright-specific (undocumented)
-	end
-	return nil                                         -- no information, possibly not auto-import symbol
-end
-
----@type fun(lhs: cmp.Entry, rhs: cmp.Entry): boolean|nil
-local function prioritize_builtin(lhs, rhs)
-	local l = get_python_import(lhs)
-	local r = get_python_import(rhs)
-	if l and r then return #l < #r end -- actually, sort by the length of the defining module
-end
-
 return {
 	'hrsh7th/nvim-cmp',
 	dependencies = {
 		'hrsh7th/cmp-nvim-lsp',
 		"hrsh7th/cmp-buffer",
 		"FelipeLema/cmp-async-path",
-		'saadparwaiz1/cmp_luasnip'
+		'saadparwaiz1/cmp_luasnip',
+		"onsails/lspkind.nvim"
 	},
 	event = "InsertEnter",
 	config = function()
 		local cmp = require('cmp')
 		local luasnip = require('luasnip')
+		local lspkind = require('lspkind')
+
 		cmp.setup({
+			formatting = {
+				format = lspkind.cmp_format({
+					mode = 'symbol_text',
+					maxwidth = 60,
+					ellipsis_char = '...',
+					show_labelDetails = true,
+				})
+			},
 			snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
@@ -70,21 +64,21 @@ return {
 				{ name = "buffer" },
 				{ name = "luasnip" },
 			},
-			sorting = {
-				comparators = {
-					cmp.config.compare.offset,
-					cmp.config.compare.exact,
-					-- compare.scopes,
-					cmp.config.compare.score,
-					cmp.config.compare.recently_used,
-					cmp.config.compare.locality,
-					cmp.config.compare.kind,
-					-- compare.sort_text,
-					prioritize_builtin,
-					cmp.config.compare.length,
-					cmp.config.compare.order,
-				},
-			},
+			-- sorting = {
+			-- 	comparators = {
+			-- 		cmp.config.compare.offset,
+			-- 		cmp.config.compare.exact,
+			-- 		-- compare.scopes,
+			-- 		cmp.config.compare.score,
+			-- 		cmp.config.compare.recently_used,
+			-- 		cmp.config.compare.locality,
+			-- 		cmp.config.compare.kind,
+			-- 		-- compare.sort_text,
+			-- 		prioritize_builtin,
+			-- 		cmp.config.compare.length,
+			-- 		cmp.config.compare.order,
+			-- 	},
+			-- },
 		})
 	end
 }

@@ -4,8 +4,14 @@ return {
 		'williamboman/mason-lspconfig.nvim'
 	},
 	event = { "BufReadPre", "BufNewFile" },
-	config = function ()
+	config = function()
 		local signs = { Error = "❌", Warn = "⚠️", Hint = "💡", Info = "" }
+		local handlers = {
+			['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' }),
+			['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help,
+				{ border = 'rounded' }),
+		}
+
 		for type, icon in pairs(signs) do
 			local hl = "DiagnosticSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -14,7 +20,7 @@ return {
 			virtual_text = false,
 			signs = true,
 			float = {
-				border = "rounded",
+				border = 'rounded',
 				source = true,
 			},
 			severity_sort = true,
@@ -57,7 +63,7 @@ return {
 		-- nvim-cmp supports additional completion capabilities
 		local capabilities = require('cmp_nvim_lsp').default_capabilities()
 		-- Enable the following language servers
-		local servers = { 'pyright', 'tsserver', 'lua_ls', 'dockerls', 'yamlls' }
+		local servers = { 'pyright', 'tsserver', 'lua_ls', 'dockerls', 'yamlls', 'gopls' }
 
 		-- Ensure the servers above are installed
 		require('mason-lspconfig').setup({
@@ -68,6 +74,7 @@ return {
 		local lspconfig = require('lspconfig')
 		for _, lsp in ipairs(servers) do
 			lspconfig[lsp].setup({
+				handlers = handlers,
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
@@ -95,6 +102,7 @@ return {
 		end
 
 		lspconfig.pyright.setup({
+			handlers = handlers,
 			before_init = function(_, config)
 				config.settings.python.pythonPath = get_python_path(config.root_dir)
 			end,

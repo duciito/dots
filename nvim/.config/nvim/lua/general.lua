@@ -1,4 +1,4 @@
-vim.g.python3_host_prog = '/home/daniel-ivanov/.pyenv/shims/python'
+vim.g.python3_host_prog = '/Users/daniel-ivanov/.pyenv/shims/python'
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 

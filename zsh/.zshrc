@@ -3938,9 +3938,8 @@ unfunction grml_status_feature
 # Custom settings
 alias cat='pygmentize -g'
 fpath=( "$HOME/.zfunctions" $fpath )
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-~/info.sh -b
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ## Pure prompt
 autoload -U promptinit; promptinit
@@ -3954,9 +3953,24 @@ prompt pure
 
 ### example: split functions-search 8,16,24,32
 #@# split functions-search 8
-autoload -U +X bashcompinit && bashcompinit
 
 ## END OF FILE #################################################################
 # vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4
 # Local variables:
 # mode: sh
+
+export PATH="/Users/daniel-ivanov/.local/bin:$PATH"
+export PATH=$PATH:~/go/bin
+export GOPATH="/Users/daniel-ivanov/go"
+export PATH="/usr/local/opt/unzip/bin:$PATH"
+export PATH="/usr/local/opt/node@21/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+alias rkt=rocket
+eval "$(pyenv init --path)"
+autoload -U +X bashcompinit && bashcompinit
+rocket agent --background

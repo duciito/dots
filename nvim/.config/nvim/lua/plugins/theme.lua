@@ -15,7 +15,7 @@ return {
 					TelescopePreviewNormal = { bg = theme.ui.bg_dim },
 					TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
 					NormalFloat = { bg = "none" },
-					FloatBorder = { bg = "none" },
+					FloatBorder = { bg = "none", fg = theme.syn.type },
 					FloatTitle = { bg = "none" },
 
 					-- Save an hlgroup with dark background and dimmed foreground

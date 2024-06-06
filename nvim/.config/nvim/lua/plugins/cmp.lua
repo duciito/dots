@@ -4,13 +4,11 @@ return {
 		'hrsh7th/cmp-nvim-lsp',
 		"hrsh7th/cmp-buffer",
 		"FelipeLema/cmp-async-path",
-		'saadparwaiz1/cmp_luasnip',
 		"onsails/lspkind.nvim"
 	},
 	event = "InsertEnter",
 	config = function()
 		local cmp = require('cmp')
-		local luasnip = require('luasnip')
 		local lspkind = require('lspkind')
 
 		cmp.setup({
@@ -24,7 +22,7 @@ return {
 			},
 			snippet = {
 				expand = function(args)
-					luasnip.lsp_expand(args.body)
+					vim.snippet.expand(args.body)
 				end,
 			},
 			window = {
@@ -42,8 +40,6 @@ return {
 				['<C-j>'] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
-					elseif luasnip.expand_or_jumpable() then
-						luasnip.expand_or_jump()
 					else
 						fallback()
 					end
@@ -51,8 +47,6 @@ return {
 				['<C-k>'] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
-					elseif luasnip.jumpable(-1) then
-						luasnip.jump(-1)
 					else
 						fallback()
 					end
@@ -62,7 +56,6 @@ return {
 				{ name = "async_path" },
 				{ name = "nvim_lsp" },
 				{ name = "buffer" },
-				{ name = "luasnip" },
 			},
 			-- sorting = {
 			-- 	comparators = {

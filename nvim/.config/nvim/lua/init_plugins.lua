@@ -16,7 +16,6 @@ require("lazy").setup({
 	spec = {
 		require("plugins.autopairs"),
 		require("plugins.cmp"),
-		require("plugins.comment"),
 		require("plugins.devicons"),
 		require("plugins.diffview"),
 		require("plugins.theme"),
@@ -24,7 +23,6 @@ require("lazy").setup({
 		require("plugins.lsp"),
 		require("plugins.gitsigns"),
 		require("plugins.lualine"),
-		require("plugins.luasnip"),
 		require("plugins.mason"),
 		require("plugins.nvim-tree"),
 		require("plugins.splitjoin"),
@@ -34,6 +32,7 @@ require("lazy").setup({
 		require("plugins.unimpaired"),
 		require("plugins.conform"),
 		require("plugins.leetcode"),
+		require("plugins.codeium"),
 	},
 	ui = {
 		border = "rounded",

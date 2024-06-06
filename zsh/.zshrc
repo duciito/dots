@@ -3938,39 +3938,28 @@ unfunction grml_status_feature
 # Custom settings
 alias cat='pygmentize -g'
 fpath=( "$HOME/.zfunctions" $fpath )
+fpath+=("$(brew --prefix)/share/zsh/site-functions")
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+fi
 
 ## Pure prompt
 autoload -U promptinit; promptinit
 PURE_PROMPT_SYMBOL='>'
 prompt pure
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-## genrefcard.pl settings
-
-### doc strings for external functions from files
-#m# f5 grml-wallpaper() Sets a wallpaper (try completion for possible values)
-
-### example: split functions-search 8,16,24,32
-#@# split functions-search 8
-
-## END OF FILE #################################################################
-# vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4
-# Local variables:
-# mode: sh
 
 export PATH="/Users/daniel-ivanov/.local/bin:$PATH"
 export PATH=$PATH:~/go/bin
 export GOPATH="/Users/daniel-ivanov/go"
-export PATH="/usr/local/opt/unzip/bin:$PATH"
-export PATH="/usr/local/opt/node@21/bin:$PATH"
-export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-alias rkt=rocket
-eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
 autoload -U +X bashcompinit && bashcompinit
-rocket agent --background
+
+# vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4
+# Local variables:
+# mode: sh

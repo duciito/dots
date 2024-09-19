@@ -17,7 +17,7 @@ return {
 			},
 			view = {
 				side = "right",
-				width = 32,
+				width = 28,
 				preserve_window_proportions = true,
 			},
 			renderer = {

@@ -33,13 +33,17 @@ return {
     vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
     --  This function gets run when an LSP connects to a particular buffer.
-    local on_attach = function(_, bufnr)
+    local on_attach = function(client, bufnr)
       local nmap = function(keys, func, desc)
         if desc then
           desc = 'LSP: ' .. desc
         end
 
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+      end
+
+      if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
       end
 
       nmap('<leader>cr', vim.lsp.buf.rename, '[R]e[n]ame')
@@ -64,51 +68,50 @@ return {
     -- nvim-cmp supports additional completion capabilities
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
     -- Enable the following language servers
-    local servers = { 'html', 'cssls', 'svelte', 'pyright', 'tsserver', 'lua_ls', 'dockerls', 'yamlls', 'gopls' }
+    local servers = { 'html', 'cssls', 'svelte', 'basedpyright', 'ruff', 'ts_ls', 'lua_ls', 'dockerls', 'yamlls',
+      'gopls' }
 
     -- Ensure the servers above are installed
     require('mason-lspconfig').setup({
       ensure_installed = servers,
-    })
-
-    table.remove(servers, 0)
-    local lspconfig = require('lspconfig')
-    for _, lsp in ipairs(servers) do
-      lspconfig[lsp].setup({
-        handlers = handlers,
-        on_attach = on_attach,
-        capabilities = capabilities,
-      })
-    end
-
-    -- Python LSP setup --
-    local util = require("lspconfig/util")
-    local path = util.path
-    local function get_python_path(workspace)
-      -- Use activated virtualenv.
-      if vim.env.VIRTUAL_ENV then
-        return path.join(vim.env.VIRTUAL_ENV, "bin", "python")
-      end
-
-      -- Find and use virtualenv in workspace directory.
-      for _, pattern in ipairs({ "*", ".*" }) do
-        local match = vim.fn.glob(path.join(workspace, pattern, "pyvenv.cfg"))
-        if match ~= "" then
-          return path.join(path.dirname(match), "bin", "python")
+      handlers = {
+        function(server)
+          require('lspconfig')[server].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            handlers = handlers,
+          })
+        end,
+        ["ruff"] = function()
+          require("lspconfig").ruff.setup({
+            capabilities = capabilities,
+            on_attach = function(client, bufnr)
+              client.server_capabilities.hoverProvider = false
+              on_attach(client, bufnr)
+            end,
+            handlers = handlers,
+          })
+        end,
+        ["basedpyright"] = function()
+          require("lspconfig").basedpyright.setup({
+            on_attach = on_attach,
+            handlers = handlers,
+            capabilities = capabilities,
+            settings = {
+              basedpyright = {
+                disableOrganizeImports = true,
+                analysis = {
+                  typeCheckingMode = "standard",
+                  useLibraryCodeForTypes = true,
+                  diagnosticMode = "openFilesOnly",
+                  autoImportCompletions = true,
+                  autoSearchPaths = true,
+                },
+              },
+            },
+          })
         end
-      end
-
-      -- Fallback to system Python.
-      return exepath("python3") or exepath("python") or "python"
-    end
-
-    lspconfig.pyright.setup({
-      handlers = handlers,
-      before_init = function(_, config)
-        config.settings.python.pythonPath = get_python_path(config.root_dir)
-      end,
-      on_attach = on_attach,
-      capabilities = capabilities,
+      }
     })
   end,
 }

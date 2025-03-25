@@ -1,7 +1,8 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    'williamboman/mason-lspconfig.nvim'
+    'williamboman/mason-lspconfig.nvim',
+    'saghen/blink.cmp',
   },
   event = { "BufReadPre", "BufNewFile" },
   config = function()
@@ -42,9 +43,9 @@ return {
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
       end
 
-      if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-      end
+      -- if client.server_capabilities.inlayHintProvider then
+      --   vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+      -- end
 
       nmap('<leader>cr', vim.lsp.buf.rename, '[R]e[n]ame')
       nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
@@ -65,8 +66,7 @@ return {
       -- nmap('<leader>cf', function() vim.lsp.buf.format { async = true } end, 'Format buffer')
     end
 
-    -- nvim-cmp supports additional completion capabilities
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
     -- Enable the following language servers
     local servers = { 'html', 'cssls', 'svelte', 'basedpyright', 'ruff', 'ts_ls', 'lua_ls', 'dockerls', 'yamlls',
       'gopls' }

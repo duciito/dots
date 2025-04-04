@@ -3,7 +3,6 @@ return {
   lazy = false,
   config = function()
     require('kanagawa').setup({
-      colors = { theme = { all = { ui = { bg_gutter = "none" } } } },
       undercurl = false,
       overrides = function(colors)
         local theme = colors.theme
@@ -36,6 +35,6 @@ return {
         }
       end,
     })
-    vim.cmd("colorscheme kanagawa")
+    vim.cmd("colorscheme kanagawa-dragon")
   end
 }

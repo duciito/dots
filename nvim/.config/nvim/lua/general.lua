@@ -1,4 +1,4 @@
-vim.g.python3_host_prog = '/usr/bin/python'
+vim.g.python3_host_prog = '/home/id957659/miniconda3/bin/python'
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 

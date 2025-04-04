@@ -5,6 +5,9 @@ return {
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},
+  keys = {
+    { "<leader>pt", ":NvimTreeToggle<CR>", desc = "Open project file tree" },
+  },
 	config = function()
 		require("nvim-tree").setup({
 			update_focused_file = {
@@ -27,7 +30,5 @@ return {
 				},
 			},
 		})
-
-		vim.keymap.set("n", "<leader>pt", "<cmd>NvimTreeToggle<CR>", { desc = "Open project file tree", noremap=true })
 	end,
 }

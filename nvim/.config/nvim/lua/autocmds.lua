@@ -70,3 +70,41 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell = true
   end,
 })
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+
+    if not client then
+      return
+    end
+
+    local map = function(keys, func, desc)
+      vim.keymap.set("n", keys, func, { buffer = ev.buf, desc = "LSP: " .. desc })
+    end
+
+    map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+    map('<leader>cr', vim.lsp.buf.rename, '[R]e[n]ame')
+    map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+    map('<leader>ci', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, 'Inlay Hints')
+
+    map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+    map('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+    -- See `:help K` for why this keymap
+    map('K', function() vim.lsp.buf.hover({ border = 'rounded' }) end, 'Hover Documentation')
+    map('<C-k>', function() vim.lsp.buf.signature_help({ border = 'rounded' }) end, 'Signature Documentation')
+
+    -- Lesser used LSP functionality
+    map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+    map('gy', vim.lsp.buf.type_definition, 'Type [D]efinition')
+    map('<leader>cl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, '[W]orkspace [L]ist Folders')
+    map('<leader>cf', function() vim.lsp.buf.format { async = true } end, 'Format buffer')
+
+    if client.name == 'ruff' then
+      -- Disable hover in favor of Pyright
+      client.server_capabilities.hoverProvider = false
+    end
+  end,
+})

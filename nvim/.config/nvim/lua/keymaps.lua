@@ -18,3 +18,8 @@ vim.keymap.set('n', '<leader><space>', ':noh<CR>', { silent = true })
 vim.api.nvim_set_keymap('i', '<c-j>', 'pumvisible() ? "\\<c-n>" : "\\<c-j>"' , { noremap = true, expr=true })
 vim.api.nvim_set_keymap('i', '<c-k>', 'pumvisible() ? "\\<c-p>" : "\\<c-k>"' , { noremap = true, expr=true })
 
+-- Diagnostics
+vim.keymap.set('n', '[g', function() vim.diagnostic.jump({count=-1, float=true}) end)
+vim.keymap.set('n', ']g', function() vim.diagnostic.jump({count=1, float=true}) end)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)

@@ -44,7 +44,7 @@ vim.diagnostic.config({
 
 local lsps = get_lua_filenames_without_extension()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-
+capabilities.general.positionEncodings = { "utf-16" }
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true,

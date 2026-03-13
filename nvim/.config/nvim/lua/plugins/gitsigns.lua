@@ -1,41 +1,45 @@
 return {
-	"lewis6991/gitsigns.nvim",
-	event = { "BufReadPre", "BufNewFile" },
-	config = function()
-		local gitsigns = require("gitsigns")
-		gitsigns.setup({
-			on_attach = function(bufnr)
-				local gs = package.loaded.gitsigns
+  "lewis6991/gitsigns.nvim",
+  event = { "BufReadPre", "BufNewFile" },
+  config = function()
+    local gitsigns = require("gitsigns")
+    gitsigns.setup({
+      on_attach = function(bufnr)
+        local function map(mode, l, r, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          vim.keymap.set(mode, l, r, opts)
+        end
 
-				local function map(mode, l, r, opts)
-					opts = opts or {}
-					opts.buffer = bufnr
-					vim.keymap.set(mode, l, r, opts)
-				end
+        -- Navigation
+        map('n', ']c', function()
+          if vim.wo.diff then
+            vim.cmd.normal({ ']c', bang = true })
+          else
+            gitsigns.nav_hunk('next')
+          end
+        end)
 
-				-- Navigation
-				map('n', ']c', function()
-					if vim.wo.diff then return ']c' end
-					vim.schedule(function() gs.next_hunk() end)
-					return '<Ignore>'
-				end, { expr = true })
+        map('n', '[c', function()
+          if vim.wo.diff then
+            vim.cmd.normal({ '[c', bang = true })
+          else
+            gitsigns.nav_hunk('prev')
+          end
+        end)
 
-				map('n', '[c', function()
-					if vim.wo.diff then return '[c' end
-					vim.schedule(function() gs.prev_hunk() end)
-					return '<Ignore>'
-				end, { expr = true })
-
-				-- Actions
-				map('n', '<leader>gb', function() gs.blame_line { full = true } end)
-				map('n', '<leader>gB', gs.toggle_current_line_blame)
-				map('n', '<leader>gd', gs.diffthis)
-				map('n', '<leader>gD', function() gs.diffthis('~') end)
-				map('n', '<leader>gr', gs.reset_hunk)
-				map('n', '<leader>gs', gs.stage_hunk)
-				map('n', '<leader>gS', gs.undo_stage_hunk)
-				map('n', '<leader>gp', gs.preview_hunk)
-			end,
-		})
-	end,
+        -- Actions
+        map('n', '<leader>gb', function() gitsigns.blame_line { full = true } end)
+        map('n', '<leader>gB', gitsigns.toggle_current_line_blame)
+        map('n', '<leader>gd', gitsigns.diffthis)
+        map('n', '<leader>gD', function() gitsigns.diffthis('~') end)
+        map('n', '<leader>gr', gitsigns.reset_hunk)
+        map('n', '<leader>gs', gitsigns.stage_hunk)
+        map('n', '<leader>gS', gitsigns.undo_stage_hunk)
+        map('n', '<leader>gp', gitsigns.preview_hunk_inline)
+        map('n', '<leader>gQ', function() gitsigns.setqflist('all') end)
+        map('n', '<leader>gq', gitsigns.setqflist)
+      end,
+    })
+  end,
 }

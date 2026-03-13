@@ -1,87 +1,83 @@
 return {
-	'nvim-treesitter/nvim-treesitter',
-	dependencies = {
-		'nvim-treesitter/nvim-treesitter-textobjects'
-	},
-	event = { "BufReadPost", "BufNewFile" },
-	build = ":TSUpdate",
-	config = function ()
-		require('nvim-treesitter.configs').setup({
-			-- Add languages to be installed here that you want installed for treesitter
-			ensure_installed = {
-				'c',
-				'lua',
-				'python',
-				'typescript',
-				'javascript',
-				'json',
-				'bash',
-				'dockerfile',
-				'markdown',
-				'yaml',
-			},
-			auto_install = false,
+  'nvim-treesitter/nvim-treesitter',
+  branch = 'main',
+  lazy = false,
+  build = ':TSUpdate',
+  config = function()
+    local ts = require('nvim-treesitter')
+    local parsers = {
+      'bash',
+      'comment',
+      'css',
+      'diff',
+      'dockerfile',
+      'elixir',
+      'git_config',
+      'gitcommit',
+      'gitignore',
+      'groovy',
+      'go',
+      'heex',
+      'hcl',
+      'html',
+      'http',
+      'java',
+      'javascript',
+      'jsdoc',
+      'json',
+      'json5',
+      'lua',
+      'make',
+      'markdown',
+      'markdown_inline',
+      'python',
+      'regex',
+      'rst',
+      'rust',
+      'scss',
+      'ssh_config',
+      'sql',
+      'terraform',
+      'typst',
+      'toml',
+      'tsx',
+      'typescript',
+      'vim',
+      'vimdoc',
+      'yaml',
+    }
+    local ignore_filetypes = {
+      'checkhealth',
+      'lazy',
+      'mason',
+    }
 
-			highlight = { enable = true },
-			indent = { enable = true },
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = '<c-space>',
-					node_incremental = '<c-space>',
-					-- TODO: I'm not sure for this one.
-					scope_incremental = '<c-s>',
-					node_decremental = '<c-backspace>',
-				},
-			},
-			textobjects = {
-				select = {
-					enable = true,
-					lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-					keymaps = {
-						-- You can use the capture groups defined in textobjects.scm
-						['af'] = '@function.outer',
-						['if'] = '@function.inner',
-						['ac'] = '@class.outer',
-						['ic'] = '@class.inner',
-						['aa'] = '@parameter.outer',
-						['ia'] = '@parameter.inner',
-					},
-				},
-				move = {
-					enable = true,
-					set_jumps = true, -- whether to set jumps in the jumplist
-					goto_next_start = {
-						[']m'] = '@function.outer',
-						[']]'] = '@class.outer',
-						[']a'] = '@parameter.inner',
-					},
-					goto_next_end = {
-						[']M'] = '@function.outer',
-						[']['] = '@class.outer',
-						[']A'] = '@parameter.inner',
-					},
-					goto_previous_start = {
-						['[m'] = '@function.outer',
-						['[['] = '@class.outer',
-						['[a'] = '@parameter.inner',
-					},
-					goto_previous_end = {
-						['[M'] = '@function.outer',
-						['[]'] = '@class.outer',
-						['[A'] = '@parameter.inner',
-					},
-				},
-				swap = {
-					enable = true,
-					swap_next = {
-						['<leader>a'] = '@parameter.inner',
-					},
-					swap_previous = {
-						['<leader>A'] = '@parameter.inner',
-					},
-				},
-			},
-		})
-	end,
+    -- Install parsers after lazy.nvim is done (non-blocking)
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'LazyDone',
+      once = true,
+      callback = function()
+        ts.install(parsers, { max_jobs = 8 })
+      end,
+    })
+
+    -- Folding setup
+    vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    vim.wo[0][0].foldmethod = 'expr'
+    vim.cmd('set nofoldenable')
+
+    vim.api.nvim_create_autocmd('FileType', {
+      desc = 'Enable treesitter highlighting and indentation',
+      callback = function(event)
+        if vim.tbl_contains(ignore_filetypes, event.match) then
+          return
+        end
+        local lang = vim.treesitter.language.get_lang(event.match) or event.match
+        local ok = pcall(vim.treesitter.start, event.buf, lang)
+        if ok then
+          vim.bo[event.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+      end,
+    })
+  end,
 }

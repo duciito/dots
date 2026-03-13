@@ -1,4 +1,4 @@
-vim.g.python3_host_prog = '/home/id957659/miniconda3/bin/python'
+vim.g.python3_host_prog = '/home/id957659/.local/share/neovim/venv/bin/python3'
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 

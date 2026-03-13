@@ -9,7 +9,7 @@ return {
       'html',
       'cssls',
       'svelte',
-      'basedpyright',
+      'ty',
       'ruff',
       'ts_ls',
       'lua_ls',
